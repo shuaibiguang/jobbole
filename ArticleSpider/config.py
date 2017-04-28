@@ -2,7 +2,7 @@ import socket,os
 class Config():
     # mysql
     host = socket.gethostbyname_ex(socket.gethostname())[2][3]
-    port = 3307
+    port = 3306
     db = "article_spide"
     user = "root"
     password = "root"
