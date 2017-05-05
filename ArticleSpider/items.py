@@ -81,3 +81,18 @@ class JobBoleArticleItem(scrapy.Item):
     )
     content = scrapy.Field()
 
+
+class ZhihuQuestionItem(scrapy.Item):
+    #知乎问题的 item
+    zhihu_id = scrapy.Field()
+    topics = scrapy.Field()
+    url = scrapy.Field()
+    title = scrapy.Field()
+    content = scrapy.Field()
+    #时间获取不到，所以这里不写
+    answer_num = scrapy.Field()
+    comments_num = scrapy.Field()
+    watch_user_num = scrapy.Field()
+    click_num = scrapy.Field()
+    crawl_time = scrapy.Field()
+
