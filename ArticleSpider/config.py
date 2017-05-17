@@ -1,9 +1,9 @@
 import socket,os
 class Config():
     # mysql
-    host = socket.gethostbyname_ex(socket.gethostname())[2][1]
+    host = socket.gethostbyname_ex(socket.gethostname())[2][0]
     port = 3306
-    db = "article_spide"
+    db = "article_spider"
     user = "root"
     password = "root"
     # system

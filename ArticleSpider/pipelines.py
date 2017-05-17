@@ -37,21 +37,17 @@ class MysqlTwistedPipeline(object):
     def process_item(self, item, spider):
         # 使用Twisted 将mysql插入变成异步执行
         query = self.dbpool.runInteraction(self.do_insert, item)
-        query.addErrback(self.handle_error) #处理异常
+        query.addErrback(self.handle_error, item, spider) #处理异常
 
-    def handle_error(self, failure):
+    def handle_error(self, failure, item, spider):
         # 在这里做错误的处理
         print (failure)
+        pass
 
     def do_insert(self, cursor, item):
         # 执行具体插入
-        insert_sql = """
-                    insert into jobbole_article VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                """
-        cursor.execute(insert_sql, (
-        item['title'], item['create_time'], item['url'], item['url_object_id'], item['front_image_url'][0],
-        item['front_image_path'], item['comment_nums'], item['fav_nums'], item['praise_nums'], item['tags'],
-        item['content']))
+        insert_sql, params = item.get_insert_sql()
+        cursor.execute(insert_sql, params)
 
 # 使用数据库来存储数据
 class MysqlPipeline(object):

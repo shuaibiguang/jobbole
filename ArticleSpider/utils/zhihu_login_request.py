@@ -85,6 +85,6 @@ def zhihu_login(account, password):
     response_text = session.post(post_url, data=post_data, headers=header)
     session.cookies.save()
 
-zhihu_login('519349139@qq.com','z6028590')
+zhihu_login('@qq.com','z0')
 is_login()
 # get_captcha()
